@@ -8,12 +8,17 @@ import (
 )
 
 func EnvMongoURI() string {
-	err := godotenv.Load()
+	val, ok := os.LookupEnv("MONGOURI")
 
-	if err != nil {
-		log.Fatal("Error Loading .env file")
+	if !ok {
+		err := godotenv.Load()
+
+		if err != nil {
+			log.Fatal("Error Loading .env file")
+		}
+		return os.Getenv("MONGOURI")
 	}
-	return os.Getenv("MONGOURI")
+	return val
 }
 
 func EnvHostName() string {

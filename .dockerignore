@@ -42,3 +42,4 @@ _test
 _testmain.go
 /VERSION.cache
 .env
+.git
