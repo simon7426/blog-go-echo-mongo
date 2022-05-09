@@ -15,3 +15,19 @@ func EnvMongoURI() string {
 	}
 	return os.Getenv("MONGOURI")
 }
+
+func EnvHostName() string {
+	val, ok := os.LookupEnv("HOSTNAME")
+	if !ok {
+		return "localhost"
+	}
+	return val
+}
+
+func EnvHostPort() string {
+	val, ok := os.LookupEnv("HOSTNAME")
+	if !ok {
+		return "7000"
+	}
+	return val
+}

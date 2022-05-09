@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -22,7 +23,7 @@ func GetAllBlogs(c echo.Context) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	var blogs []models.Blog
+	var blogs []models.BlogCollection
 
 	results, err := blogCollection.Find(ctx, bson.M{})
 
@@ -39,7 +40,7 @@ func GetAllBlogs(c echo.Context) error {
 	defer results.Close(ctx)
 
 	for results.Next(ctx) {
-		var singleBlog models.Blog
+		var singleBlog models.BlogCollection
 		if err = results.Decode(&singleBlog); err != nil {
 			return c.JSON(http.StatusInternalServerError, response.BlogResponse{
 				Status:  http.StatusInternalServerError,
@@ -49,7 +50,7 @@ func GetAllBlogs(c echo.Context) error {
 				},
 			})
 		}
-
+		singleBlog.Link = fmt.Sprintf("http://%s:%s/blogs/%s", configs.EnvHostName(), configs.EnvHostPort(), singleBlog.Id.Hex())
 		blogs = append(blogs, singleBlog)
 
 	}

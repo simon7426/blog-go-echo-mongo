@@ -16,6 +16,15 @@ type Blog struct {
 	UpdatedOn time.Time          `json:"updated_on,omitempty"`
 }
 
+type BlogCollection struct {
+	Id        primitive.ObjectID `json:"id,omitempty"`
+	Title     string             `json:"title"`
+	Tags      []string           `json:"tags,omitempty"`
+	Link      string             `json:"link,omitempty"`
+	CreatedOn time.Time          `json:"created_on,omitempty"`
+	UpdatedOn time.Time          `json:"updated_on,omitempty"`
+}
+
 type Comment struct {
 	Email       string    `json:"email"`
 	DisplayName string    `json:"display_name"`

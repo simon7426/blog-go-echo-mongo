@@ -11,4 +11,5 @@ func BlogRoutes(e *echo.Echo) {
 	e.GET("/blogs/:blogId", controllers.GetABlog)
 	e.PUT("/blogs/:blogId", controllers.EditABlog)
 	e.DELETE("/blogs/:blogId", controllers.DeleteABlog)
+	e.GET("/alive", controllers.Alive)
 }
