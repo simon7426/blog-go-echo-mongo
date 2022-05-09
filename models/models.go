@@ -26,8 +26,9 @@ type BlogCollection struct {
 }
 
 type Comment struct {
-	Email       string    `json:"email"`
-	DisplayName string    `json:"display_name"`
-	Body        string    `json:"body"`
-	CreatedOn   time.Time `json:"created_on"`
+	Id          primitive.ObjectID `json:"id,omitempty"`
+	Email       string             `json:"email"`
+	DisplayName string             `json:"display_name,omitempty"`
+	Body        string             `json:"body"`
+	CreatedOn   time.Time          `json:"created_on,omitempty"`
 }

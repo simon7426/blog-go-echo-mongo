@@ -180,10 +180,10 @@ func EditABlog(c echo.Context) error {
 	}
 
 	update := bson.M{
-		"title":      blog.Title,
-		"body":       blog.Body,
-		"tags":       blog.Tags,
-		"updated_on": time.Now(),
+		"title":     blog.Title,
+		"body":      blog.Body,
+		"tags":      blog.Tags,
+		"updatedon": time.Now(),
 	}
 
 	result, err := blogCollection.UpdateOne(
@@ -205,7 +205,7 @@ func EditABlog(c echo.Context) error {
 	var updatedBlog models.Blog
 	if result.MatchedCount == 1 {
 		err := blogCollection.FindOne(ctx, bson.M{
-			"id": blogId,
+			"id": objectId,
 		}).Decode(&updatedBlog)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, response.BlogResponse{

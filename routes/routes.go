@@ -6,10 +6,13 @@ import (
 )
 
 func BlogRoutes(e *echo.Echo) {
+	e.GET("/alive", controllers.Alive)
+	// Blogs CRUD
 	e.GET("/blogs", controllers.GetAllBlogs)
 	e.POST("/blogs", controllers.AddBlog)
 	e.GET("/blogs/:blogId", controllers.GetABlog)
 	e.PUT("/blogs/:blogId", controllers.EditABlog)
 	e.DELETE("/blogs/:blogId", controllers.DeleteABlog)
-	e.GET("/alive", controllers.Alive)
+	// Comments Create & Delete
+	e.POST("/blogs/:blogId/comments", controllers.AddAComment)
 }
