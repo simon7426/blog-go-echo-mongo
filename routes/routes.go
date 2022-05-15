@@ -15,4 +15,5 @@ func BlogRoutes(e *echo.Echo) {
 	e.DELETE("/blogs/:blogId", controllers.DeleteABlog)
 	// Comments Create & Delete
 	e.POST("/blogs/:blogId/comments", controllers.AddAComment)
+	e.DELETE("/blogs/:blogId/comments/:commentId", controllers.DeleteAComment)
 }
