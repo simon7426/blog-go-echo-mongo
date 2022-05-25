@@ -9,6 +9,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/simon7426/blog-go-echo-mongo/configs"
+	"github.com/simon7426/blog-go-echo-mongo/functions"
 	"github.com/simon7426/blog-go-echo-mongo/models"
 	"github.com/simon7426/blog-go-echo-mongo/response"
 	"go.mongodb.org/mongo-driver/bson"
@@ -95,6 +96,7 @@ func AddBlog(c echo.Context) error {
 		Body:      blog.Body,
 		Tags:      blog.Tags,
 		Comments:  []models.Comment{},
+		Summary:   blog.Body[:functions.MinOf(len(blog.Body)-1, 200)],
 		CreatedOn: time.Now(),
 		UpdatedOn: time.Now(),
 	}
@@ -182,6 +184,7 @@ func EditABlog(c echo.Context) error {
 	update := bson.M{
 		"title":     blog.Title,
 		"body":      blog.Body,
+		"summary":   blog.Body[:functions.MinOf(len(blog.Body)-1, 200)],
 		"tags":      blog.Tags,
 		"updatedon": time.Now(),
 	}

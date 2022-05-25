@@ -12,6 +12,7 @@ type Blog struct {
 	Body      string             `json:"body"`
 	Tags      []string           `json:"tags"`
 	Comments  []Comment          `json:"comments,omitempty"`
+	Summary   string             `json:"summary"`
 	CreatedOn time.Time          `json:"created_on,omitempty"`
 	UpdatedOn time.Time          `json:"updated_on,omitempty"`
 }
@@ -19,6 +20,7 @@ type Blog struct {
 type BlogCollection struct {
 	Id        primitive.ObjectID `json:"id,omitempty"`
 	Title     string             `json:"title"`
+	Summary   string             `json:"summary"`
 	Tags      []string           `json:"tags,omitempty"`
 	Link      string             `json:"link,omitempty"`
 	CreatedOn time.Time          `json:"created_on,omitempty"`
